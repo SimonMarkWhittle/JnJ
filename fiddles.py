@@ -1,4 +1,4 @@
-import random
+import random, json
 
 
 class Branch():
@@ -32,6 +32,7 @@ class Event():
 
     def __init__(self, obj=None):
         self.text = ""
+        self.tags = []
         self.branch = Branch()
 
         if not obj:
@@ -59,6 +60,7 @@ class Event():
     def load_from(self, obj):
         self.id = obj["id"]
         self.text = obj["text"]
+        self.tags = obj["tags"]
         self.branch = Branch(obj["branch"])
 
         if Event.next_id <= self.id:
@@ -69,6 +71,9 @@ class Event():
 
         Event.events[self.id] = self
 
+    def has(self, tag):
+        return tag in self.tags
+
     @staticmethod
     def retrieve_event(event_id):
         return Event.events.get(event_id)
@@ -76,18 +81,37 @@ class Event():
     @staticmethod
     def find_event_with(tags):
 
-        id_list = list(self.events.keys())
+        id_list = list(Event.events.keys())
 
-        event_id = random.choice(id_list)
-        event = Event.retrieve_event(event_id)
+        candidates = []
 
+        for event_id in id_list:
+            event = Event.retrieve_event(event_id)
+
+            tag_matches = [event.has(tag) for tag in tags]
+
+            if all(tag_matches):
+                candidates.append(event)
+
+        event = random.choice(candidates)
         return event
+
+    @staticmethod
+    def initialize_events_from(obj_list):
+
+        for event_obj in obj_list:
+            Event(event_obj)
 
 
 class EventGenerator():
-    def __init__(self):
+    def __init__(self, obj):
+
         self.event_tags = []
         self.state = "ba"
+
+        if obj:
+            self.event_tags = obj["event_tags"]
+            self.state = obj["state"]
     
     def gen_event(self):
         num_tags = random.randint(2, len(self.event_tags))
@@ -104,4 +128,16 @@ class EventGenerator():
     def do_stuff(self):
         print("stuff happened to gen!")
 
+    @staticmethod
+    def initialize_gens_from(obj_list):
+        for gen_obj in obj_list:
+            EventGenerator(gen_obj)
 
+def load_from_json():
+    stuff = json.load(open("fiddles.json", "r"))
+
+    events_objs = stuff["events"]
+    Event.initialize_events_from(events_objs)
+
+    gen_objs = stuff["generators"]
+    EventGenerator.initialize_gens_from(gen_objs)
