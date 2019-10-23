@@ -1,0 +1,46 @@
+{
+    "events" : [
+        {
+            "id": "ba",
+            "title": "abua",
+            "text": "bo, ba",
+            "tags": [
+                "ba",
+                "be",
+                "bu",
+                "bo"
+            ],
+            "branch": {
+                "text": "bo, ba, be",
+                "opts": {
+                    "1": "bo",
+                    "2": "ba",
+                    "3": "be",
+                    "4": "bu",
+                    "5": "bi",
+                    "6": "by"
+                }
+            }
+        }
+    ],
+    "generators": [
+        {
+            "id": "ba",
+            "title": "ebba",
+            "text": "bo, ba",
+            "tags": [
+                "ba",
+                "be",
+                "bu"
+            ],
+            "states": [
+                {
+                    "id": "ba",
+                    "title": "ubba",
+                    "steps" : [4, 5, 6]
+                }
+            ],
+            "state": "ba"
+        }
+    ]
+}
