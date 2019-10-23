@@ -2,8 +2,8 @@
     "events" : [
         {
             "id": "ba",
-            "title": "abua",
-            "text": "bo, ba",
+            "title": "BA -",
+            "text": "Ba Event text.",
             "tags": [
                 "ba",
                 "be",
@@ -11,14 +11,34 @@
                 "bo"
             ],
             "branch": {
-                "text": "bo, ba, be",
+                "text": "Branch Question?",
                 "opts": {
                     "1": "bo",
-                    "2": "ba",
+                    "2": "bo",
+                    "3": "bo",
+                    "4": "bo",
+                    "5": "bo",
+                    "6": "bo"
+                }
+            }
+        },
+        {
+            "id": "bo",
+            "title": "BO -",
+            "text": "Bo Event text.",
+            "tags": [
+                "be",
+                "bo"
+            ],
+            "branch": {
+                "text": "Branch Question?",
+                "opts": {
+                    "1": "be",
+                    "2": "be",
                     "3": "be",
-                    "4": "bu",
-                    "5": "bi",
-                    "6": "by"
+                    "4": "be",
+                    "5": "be",
+                    "6": "be"
                 }
             }
         }
@@ -26,8 +46,8 @@
     "generators": [
         {
             "id": "ba",
-            "title": "ebba",
-            "text": "bo, ba",
+            "title": "- GENERATOR TITLE -",
+            "text": "This is the event generator text.",
             "tags": [
                 "ba",
                 "be",
